@@ -10,3 +10,24 @@
 	姓名：
 		<xn:name uid="loggedinuser" linked="true" shownetwork="true" />
 </div>
+
+<div align="center">
+          <b style="color:red;">选择好友，然后提交，可以看到好友的ID号:</b>
+          <form action="demo3.jsp">
+          <xn:multi-friend-selector max="5"/>
+          <input type="submit" name="submit">
+
+          </form>
+        <%
+          if (request.getParameter("ids[]") != null){
+	          String[] ids = request.getParameterValues("ids[]");
+	          for (String id:ids){
+	          out.print(id + "<br>");
+	          }
+          }
+		%>
+</div>
+
+
+<xn:swf swfsrc="http://doodle-jump.appspot.com/DJ/doodleJump1.swf" height="480" width="320"
+align="center"  waitforclick="false"/>
