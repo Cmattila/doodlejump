@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
-<mx:RemoteObject id="remote" destination="test"/>
-	<mx:TextInput x="166" y="168" id="textinput1"/>
-	<mx:TextInput x="404" y="168" id="textinput2"/>
-	<mx:TextInput x="623" y="168" id="textinput3"/>
-	<mx:Button x="445" y="283" label="submit" click="submit()"/>
 	<mx:Script>
 		<![CDATA[
-			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
-			import mx.rpc.remoting.RemoteObject;
-			import mx.controls.Alert;
-			
-			private function submit():void{
-				remote.addEventListener(FaultEvent.FAULT,fault);
-				remote.addEventListener(ResultEvent.RESULT,result);
-				remote.test(textinput1.text,textinput2.text);
+			function gg(evnet:ResultEvent):void{
+			var ff:String = evnet.result as String;
+			ggg.text = ff;
 			}
-			
-			private function fault(e:FaultEvent):void{
-				Alert.show(e.message.toString(),"通信失败");
-			}
-			
-			private function result(e:ResultEvent):void{
-				textinput3.text=e.message.toString();
+			function remotingSayHello():void{
+			var sname:String = nameInput.text;
+			h.hello(sname);
 			}
 		]]>
 	</mx:Script>
+	<mx:RemoteObject destination="hello" id="h" result="gg(event)" endpoint="/messagebroker/amf" >
+	</mx:RemoteObject>
+	<mx:TextArea id="ggg" x="109" y="122"/>
+	<mx:Button label="say hello" click="remotingSayHello();" x="144" y="193"/>
+	<mx:TextInput id="nameInput" x="111" y="63"/>
+	<mx:Label text="name" x="47" y="75"/>
 </mx:Application>
