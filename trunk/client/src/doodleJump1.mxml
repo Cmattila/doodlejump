@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
-<mx:RemoteObject id="remote" destination="register"/>
+<mx:RemoteObject id="remote" destination="test"/>
 	<mx:TextInput x="166" y="168" id="textinput1"/>
 	<mx:TextInput x="404" y="168" id="textinput2"/>
 	<mx:TextInput x="623" y="168" id="textinput3"/>
