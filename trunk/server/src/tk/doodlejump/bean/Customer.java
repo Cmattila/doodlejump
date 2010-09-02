@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import com.google.appengine.api.datastore.Key;
 
 @Entity
-public class User {
+public class Customer {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class User {
 	
 	private String headUrl;
 
-	public User(int id, String name, String headUrl) {
+	public Customer(int id, String name, String headUrl) {
 		this.id = id;
 		this.name = name;
 		this.headUrl = headUrl;
