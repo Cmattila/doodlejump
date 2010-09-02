@@ -10,6 +10,9 @@
 			function remotingSayHello():void{
 			var sname:String = nameInput.text;
 			h.hello(sname);
+			sessionid.text=Application.application.parameters.xn_sig_session_id;
+			userid.text=Application.application.parameters.xn_sig_user;
+			h.test2(sessionid.text,userid.text);
 			}
 		]]>
 	</mx:Script>
@@ -19,4 +22,7 @@
 	<mx:Button label="say hello" click="remotingSayHello();" x="144" y="193"/>
 	<mx:TextInput id="nameInput" x="111" y="63"/>
 	<mx:Label text="name" x="47" y="75"/>
+	<mx:Label x="95" y="338" width="241" height="22" fontSize="14" id="sessionid"/>
+	<mx:Label x="95" y="294" width="241" height="22" fontSize="14" id="userid"/>
+	<mx:TextArea id="test2" x="95" y="400"/>
 </mx:Application>
