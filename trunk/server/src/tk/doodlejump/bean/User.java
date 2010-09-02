@@ -5,11 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.google.appengine.api.datastore.Key;
+
 @Entity
 public class User {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Key key;
+	
 	private int id;
 	
 	private String name;
@@ -44,5 +48,13 @@ public class User {
 
 	public void setHeadUrl(String headUrl) {
 		this.headUrl = headUrl;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+
+	public Key getKey() {
+		return key;
 	}
 }
