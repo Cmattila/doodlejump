@@ -5,9 +5,11 @@ import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import tk.doodlejump.dao.UserDAO;
+import tk.doodlejump.dao.CustomerDAO;
 import tk.doodlejump.exception.RepositoryException;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.xiaonei.api.ProfileField;
 import com.xiaonei.api.XiaoneiException;
 import com.xiaonei.api.XiaoneiRestClient;
@@ -21,7 +23,7 @@ import flex.messaging.io.amf.ASObject;
 
 public class Hello {
 	
-	private UserDAO userDAO;
+	private CustomerDAO userDAO;
 	
 	
 	public String hello(String name){  
@@ -37,7 +39,8 @@ public class Hello {
 	@SuppressWarnings("unchecked")
 	public List<ASObject> test2(String sessionKey, String id) {
 		
-		tk.doodlejump.bean.User user = new tk.doodlejump.bean.User(1, "dfj", "f");
+		tk.doodlejump.bean.Customer user = new tk.doodlejump.bean.Customer(Integer.parseInt(id), "dfj", "f");
+
 		try {
 			userDAO.save(user);
 			userDAO.flushSession();
@@ -99,11 +102,11 @@ public class Hello {
 	    return list;
 	}
 
-	public void setUserDAO(UserDAO userDAO) {
+	public void setUserDAO(CustomerDAO userDAO) {
 		this.userDAO = userDAO;
 	}
 
-	public UserDAO getUserDAO() {
+	public CustomerDAO getUserDAO() {
 		return userDAO;
 	}
 }
