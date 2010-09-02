@@ -5,6 +5,8 @@ import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import tk.doodlejump.exception.RepositoryException;
+
 import com.xiaonei.api.ProfileField;
 import com.xiaonei.api.XiaoneiException;
 import com.xiaonei.api.XiaoneiRestClient;
@@ -13,9 +15,15 @@ import com.xiaonei.api.schema.FriendsGetAppFriendsResponse;
 import com.xiaonei.api.schema.User;
 import com.xiaonei.api.schema.UsersGetInfoResponse;
 
+import dao.UserDAO;
+
 import flex.messaging.io.amf.ASObject;
 
 public class Hello {
+	
+	private UserDAO userDAO;
+	
+	
 	public String hello(String name){  
         System.out.println("flex调用我了，真好~~~~");
         return "hello "+name;  
@@ -28,6 +36,16 @@ public class Hello {
 	
 	@SuppressWarnings("unchecked")
 	public List<ASObject> test2(String sessionKey, String id) {
+		
+		bean.User user = new bean.User(1, "dfj", "f");
+		try {
+			userDAO.save(user);
+			userDAO.flushSession();
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		List<ASObject> list = new LinkedList<ASObject>();
 		
 		XiaoneiRestClient client = new XiaoneiRestClient("95af0e363e71487e92802e6b55ab93bb", 
@@ -79,5 +97,13 @@ public class Hello {
         } 
         
 	    return list;
+	}
+
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+
+	public UserDAO getUserDAO() {
+		return userDAO;
 	}
 }

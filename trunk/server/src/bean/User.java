@@ -1,23 +1,27 @@
-package tk.doodlejump.bean;
+package bean;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@PersistenceCapable(identityType = IdentityType.APPLICATION)
+@Entity
 public class User {
-	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Persistent
 	private String name;
 	
-	@Persistent
 	private String headUrl;
 
+	public User(int id, String name, String headUrl) {
+		this.id = id;
+		this.name = name;
+		this.headUrl = headUrl;
+	}
+	
 	public int getId() {
 		return id;
 	}
