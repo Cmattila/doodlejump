@@ -1,4 +1,4 @@
-package bean;
+package tk.doodlejump.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

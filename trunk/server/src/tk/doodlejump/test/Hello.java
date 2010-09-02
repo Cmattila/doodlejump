@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import tk.doodlejump.dao.UserDAO;
 import tk.doodlejump.exception.RepositoryException;
 
 import com.xiaonei.api.ProfileField;
@@ -15,7 +16,6 @@ import com.xiaonei.api.schema.FriendsGetAppFriendsResponse;
 import com.xiaonei.api.schema.User;
 import com.xiaonei.api.schema.UsersGetInfoResponse;
 
-import dao.UserDAO;
 
 import flex.messaging.io.amf.ASObject;
 
@@ -37,7 +37,7 @@ public class Hello {
 	@SuppressWarnings("unchecked")
 	public List<ASObject> test2(String sessionKey, String id) {
 		
-		bean.User user = new bean.User(1, "dfj", "f");
+		tk.doodlejump.bean.User user = new tk.doodlejump.bean.User(1, "dfj", "f");
 		try {
 			userDAO.save(user);
 			userDAO.flushSession();
