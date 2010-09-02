@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
-<b>使用者的名称及其大中小三种头像：</b>
+<b>使用者的名称及其大中小三种头像：<%=request.getParameter("xn_sig_user") %><%=request.getParameter("xn_sig_time") %></b>
 <div style="text-align: center;">
 	图片：
 		<xn:profile-pic uid="loggedinuser" linked="true" size="tiny"/>
@@ -30,4 +30,4 @@
 
 
 <xn:swf swfsrc="http://doodle-jump.appspot.com/DJ/doodleJump1.swf" height="480" width="320"
-align="center"  waitforclick="false"/>
+align="center" flashvars="userid=<%=request.getParameter("xn_sig_user") %><%=request.getParameter("xn_sig_time") %>" waitforclick="false"/>
