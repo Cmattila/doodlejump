@@ -27,9 +27,9 @@
     		<mx:Component>
     			<mx:Canvas backgroundImage="images/shengji_yuanshu_10.png" width="548" height="30">
     				<mx:Label color="#ffffff" textAlign="center" x="0" y="5"  text="{data.id}" width="93"/>
-					<mx:Label color="#ffffff" textAlign="center" x="100" y="5" text="{data.name}" width="120"/>
-					<mx:Label color="#ffffff" textAlign="center" x="224" y="5"  text="{data.headUrl}" width="142"/>
+					<mx:Label color="#ffffff" textAlign="center" x="60" y="5" text="{data.name}" width="120"/>
 					
+					<mx:Image x="100" y="5" width="100"  source="{data.headUrl}"/>
     			</mx:Canvas>
     		</mx:Component>	
     	</mx:itemRenderer>
