@@ -1,13 +1,17 @@
 package tk.doodlejump.test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.xiaonei.api.ProfileField;
 import com.xiaonei.api.XiaoneiException;
 import com.xiaonei.api.XiaoneiRestClient;
-import com.xiaonei.api.schema.Friend;
-import com.xiaonei.api.schema.FriendsGetFriendsResponse;
+
+import com.xiaonei.api.schema.FriendsGetAppFriendsResponse;
+import com.xiaonei.api.schema.User;
+import com.xiaonei.api.schema.UsersGetInfoResponse;
 
 import flex.messaging.io.amf.ASObject;
 
@@ -29,7 +33,7 @@ public class Hello {
 		XiaoneiRestClient client = new XiaoneiRestClient("95af0e363e71487e92802e6b55ab93bb", 
 				"302992a72c8f42f68d6b6813457b48f3", sessionKey);
 	    try {
-			client.friends_getFriends();
+	    	client.friends_getAppFriends();
 		} catch (XiaoneiException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,21 +42,42 @@ public class Hello {
 			e.printStackTrace();
 		}
 		
-	    FriendsGetFriendsResponse resp = (FriendsGetFriendsResponse) client.getResponsePOJO();
-	    List<Friend> friends = resp.getFriend();
+	    FriendsGetAppFriendsResponse resp = (FriendsGetAppFriendsResponse) client.getResponsePOJO();
+	    List<Integer> userIds = resp.getUid();
+	    
+	    
+	    EnumSet<ProfileField> enumSet = EnumSet.of(ProfileField.NAME,   
+                ProfileField.HOMETOWN_LOCATION,ProfileField.BIRTHDAY,   
+                ProfileField.HEADURL,ProfileField.MAINURL,   
+                ProfileField.SEX,ProfileField.STAR,ProfileField.TINYURL,   
+                ProfileField.ZIDOU,ProfileField.UNIVERSITY_HISTORY,   
+                ProfileField.WORK_HISTORY);
+	    
+	    try {
+			client.users_getInfo(userIds, enumSet);
+		} catch (XiaoneiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-	    for (Friend friend : friends) {
+	    UsersGetInfoResponse loggedUserGetInfoRes = (UsersGetInfoResponse) client.getResponsePOJO();//处理返回结果    
+        List<User> lu = loggedUserGetInfoRes.getUser();
+        
+        for(User u:lu) {
+        	ASObject as = new ASObject();
+        	
+			as.put("id", u.getUid());
 
-			ASObject as = new ASObject();
-
-			as.put("id", friend.getId());
-
-			as.put("name", friend.getName());
+			as.put("name", u.getName());
 			
-			as.put("headUrl", friend.getHeadurl());
+			as.put("headUrl", u.getTinyurl());
 
 			list.add(as);
-	    }
+        } 
+        
 	    return list;
 	}
 }
