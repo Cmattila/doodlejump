@@ -9,11 +9,18 @@
     <default-channels>
         <channel ref="my-amf"/>
     </default-channels>
-
+	
+	<!-- 
 	<destination id="hello">
 		<properties>
 			<source> tk.doodlejump.test.Hello </source>
 		</properties>
 	</destination> 
-	
+	 -->
+	<destination id="hello">
+		<properties>
+			<factory>spring</factory>
+			<source>hello</source>
+		</properties>
+	</destination>
 </service>
