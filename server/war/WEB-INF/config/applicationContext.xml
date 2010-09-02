@@ -3,7 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
+	<bean id="UserDAO" class="tk.doodlejump.dao.UserDAO">
+	</bean>
+	
 	<bean id="hello" class="tk.doodlejump.test.Hello" abstract="false"
 		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="userDAO">
+			<ref local="UserDAO" />
+		</property>
 	</bean>
 </beans>
