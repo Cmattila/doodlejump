@@ -10,7 +10,7 @@
 			function remotingSayHello():void{
 			var sname:String = nameInput.text;
 			h.hello(sname);
-			sessionid.text=Application.application.parameters.xn_sig_session_id;
+			sessionid.text=Application.application.parameters.xn_sig_session_key;
 			userid.text=Application.application.parameters.xn_sig_user;
 			h.test2(sessionid.text,userid.text);
 			}
