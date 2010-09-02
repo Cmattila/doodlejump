@@ -3,26 +3,38 @@
 	<mx:Script>
 		<![CDATA[
 			import mx.rpc.events.ResultEvent;
+			import mx.collections.ArrayCollection;
 			function gg(evnet:ResultEvent):void{
-			var ff:String = evnet.result as String;
-			ggg.text = ff;
+			
+			var ff:ArrayCollection = evnet.result as ArrayCollection;
+			list.dataProvider=ff;
+			
 			}
+			
+			
+			
 			function remotingSayHello():void{
-			var sname:String = nameInput.text;
-			h.hello(sname);
-			sessionid.text=Application.application.parameters.xn_sig_session_key;
-			userid.text=Application.application.parameters.xn_sig_user;
+		
 			h.test2(sessionid.text,userid.text);
 			}
 		]]>
 	</mx:Script>
 	<mx:RemoteObject destination="hello" id="h" result="gg(event)" endpoint="/messagebroker/amf" >
 	</mx:RemoteObject>
-	<mx:TextArea id="ggg" x="109" y="122"/>
-	<mx:Button label="say hello" click="remotingSayHello();" x="144" y="193"/>
-	<mx:TextInput id="nameInput" x="111" y="63"/>
-	<mx:Label text="name" x="47" y="75"/>
-	<mx:Label x="95" y="338" width="241" height="22" fontSize="14" id="sessionid"/>
-	<mx:Label x="95" y="294" width="241" height="22" fontSize="14" id="userid"/>
-	<mx:TextArea id="test2" x="95" y="400"/>
+	<mx:List y="102" x="95" borderStyle="none" width="420" height="267"
+    	 backgroundAlpha="0" selectable="false" verticalScrollBarStyleName="vScrollBar" id="list">
+    	<mx:itemRenderer>
+    		<mx:Component>
+    			<mx:Canvas backgroundImage="images/shengji_yuanshu_10.png" width="548" height="30">
+    				<mx:Label color="#ffffff" textAlign="center" x="0" y="5"  text="{data.id}" width="93"/>
+					<mx:Label color="#ffffff" textAlign="center" x="100" y="5" text="{data.name}" width="120"/>
+					<mx:Label color="#ffffff" textAlign="center" x="224" y="5"  text="{data.headUrl}" width="142"/>
+					
+    			</mx:Canvas>
+    		</mx:Component>	
+    	</mx:itemRenderer>
+    </mx:List>
+	<mx:Button label="say hello" click="remotingSayHello();" x="144" y="400"/>
+	<mx:Label x="95" y="72" width="184" height="22" fontSize="14" id="sessionid" text="{Application.application.parameters.xn_sig_session_key}"/>
+	<mx:Label x="95" y="27" width="184" height="22" fontSize="14" id="userid" text="{Application.application.parameters.xn_sig_user}"/>
 </mx:Application>
