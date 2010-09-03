@@ -8,8 +8,6 @@ import java.util.List;
 import tk.doodlejump.dao.CustomerDAO;
 import tk.doodlejump.exception.RepositoryException;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.xiaonei.api.ProfileField;
 import com.xiaonei.api.XiaoneiException;
 import com.xiaonei.api.XiaoneiRestClient;
@@ -23,7 +21,7 @@ import flex.messaging.io.amf.ASObject;
 
 public class Hello {
 	
-	private CustomerDAO userDAO;
+	private CustomerDAO customerDAO;
 	
 	
 	public String hello(String name){  
@@ -42,8 +40,8 @@ public class Hello {
 		tk.doodlejump.bean.Customer user = new tk.doodlejump.bean.Customer(Integer.parseInt(id), "dfj", "f");
 
 		try {
-			userDAO.save(user);
-			userDAO.flushSession();
+			customerDAO.save(user);
+			customerDAO.flushSession();
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,11 +100,12 @@ public class Hello {
 	    return list;
 	}
 
-	public void setUserDAO(CustomerDAO userDAO) {
-		this.userDAO = userDAO;
+	public void setCustomerDAO(CustomerDAO customerDAO) {
+		this.customerDAO = customerDAO;
 	}
 
-	public CustomerDAO getUserDAO() {
-		return userDAO;
+	public CustomerDAO getCustomerDAO() {
+		return customerDAO;
 	}
+
 }
