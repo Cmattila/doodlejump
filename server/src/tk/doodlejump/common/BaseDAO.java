@@ -18,6 +18,7 @@ public class BaseDAO<Entity, Id extends Serializable> {
 	private Class<Entity> entity = null;
 	protected Map<String, Object> paramsToQuery = new HashMap<String, Object>();
 
+	@SuppressWarnings("unchecked")
 	private Class<Entity> getEntity(){
 		if(entity == null) {
 			ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
@@ -60,7 +61,8 @@ public class BaseDAO<Entity, Id extends Serializable> {
 	  * @return
 	  * @throws RepositoryException
 	  */
-	 public List executeQuery(String hql) throws RepositoryException {
+	 @SuppressWarnings("unchecked")
+	public List executeQuery(String hql) throws RepositoryException {
 		 return DatanucleusCRUDUtils.executeQuery(hql);
 	 }
 
@@ -71,7 +73,8 @@ public class BaseDAO<Entity, Id extends Serializable> {
 	  * @return
 	  * @throws RepositoryException
 	  */
-	 public List executeQuery(String hql, Map params) throws RepositoryException {
+	 @SuppressWarnings("unchecked")
+	public List executeQuery(String hql, Map params) throws RepositoryException {
 		 List retorno = DatanucleusCRUDUtils.executeQuery(hql, params); 
 		 params.clear();
 		 return retorno;
@@ -94,7 +97,8 @@ public class BaseDAO<Entity, Id extends Serializable> {
 	  * @return
 	  * @throws RepositoryException
 	  */
-	 public Object executeQueryOneResult(String hql, Map params) throws RepositoryException {
+	 @SuppressWarnings("unchecked")
+	public Object executeQueryOneResult(String hql, Map params) throws RepositoryException {
 		 Object retorno = DatanucleusCRUDUtils.executeQueryOneResult(hql, params); 
 		 params.clear();
 		 return retorno;
@@ -106,7 +110,8 @@ public class BaseDAO<Entity, Id extends Serializable> {
 	  * @return
 	  * @throws RepositoryException
 	  */
-	 public List getAll() throws RepositoryException {
+	 @SuppressWarnings("unchecked")
+	public List getAll() throws RepositoryException {
 		 return DatanucleusCRUDUtils.getAll(getEntity().getSimpleName());
 	 }
 
