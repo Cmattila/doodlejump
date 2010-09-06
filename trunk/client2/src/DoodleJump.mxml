@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" frameRate="60" 
-                width="800" height="600" applicationComplete="_OnLoaded()">
+                width="320" height="512" applicationComplete="_OnLoaded()">
     <mx:Script>
         <![CDATA[
             import com.pblabs.animation.AnimatorComponent;
@@ -63,7 +63,7 @@
                 removeAllChildren();
             }
             
-            private var _main:Main = new Main();
+            private var _main:Starter = new Starter();
         ]]>
     </mx:Script>
 </mx:Application>
