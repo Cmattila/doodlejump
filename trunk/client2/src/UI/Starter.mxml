@@ -10,6 +10,6 @@
          {
             LevelManager.instance.loadLevel(1);
          }
-      ]]>
+      ]]> 
    </mx:Script>
 </mx:Canvas>
