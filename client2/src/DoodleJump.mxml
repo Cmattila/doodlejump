@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+/*******************************************************************************
+* PushButton Engine
+* Copyright (C) 2009 PushButton Labs, LLC
+* For more information see http://www.pushbuttonengine.com
+* 
+* This file is licensed under the terms of the MIT license, which is included
+* in the License.html file at the root directory of this SDK.
+******************************************************************************/
+-->
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" frameRate="60" 
                 width="320" height="512" applicationComplete="_OnLoaded()">
     <mx:Script>
@@ -47,6 +57,9 @@
                 // Start up the engine.
                 PBE.startup(this);
                 
+                // Add our resources.
+                PBE.addResources(new Resources());
+                
                 // Configure the level manager.
                 LevelManager.instance.addEventListener(LevelEvent.LEVEL_LOADED_EVENT, _OnLevelLoaded);
                 LevelManager.instance.load("../assets/levelDescriptions.xml");
@@ -55,15 +68,17 @@
                 LevelManager.instance.start(1);
                 
                 // Show the main menu.
-                addChild(_main);
+                addChild(_mainMenu);
             }
             
             private function _OnLevelLoaded(event:LevelEvent):void
             {
                 removeAllChildren();
+                addChild(_gameUI);
             }
             
-            private var _main:Starter = new Starter();
+            private var _mainMenu:Starter = new Starter();
+            private var _gameUI:Main = new Main();
         ]]>
     </mx:Script>
 </mx:Application>
